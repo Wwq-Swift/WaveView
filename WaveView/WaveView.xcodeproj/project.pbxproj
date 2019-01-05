@@ -13,6 +13,7 @@
 		C20CA58F21DE51DA00BDEBAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C20CA58E21DE51DA00BDEBAC /* Assets.xcassets */; };
 		C20CA59221DE51DA00BDEBAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C20CA59021DE51DA00BDEBAC /* LaunchScreen.storyboard */; };
 		C20CA59A21DE51F200BDEBAC /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20CA59921DE51F200BDEBAC /* WaveView.swift */; };
+		C20CA59C21E1359100BDEBAC /* WQWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20CA59B21E1359100BDEBAC /* WQWaveView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C20CA59121DE51DA00BDEBAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C20CA59321DE51DA00BDEBAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C20CA59921DE51F200BDEBAC /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
+		C20CA59B21E1359100BDEBAC /* WQWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WQWaveView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				C20CA58721DE51D700BDEBAC /* AppDelegate.swift */,
 				C20CA58921DE51D700BDEBAC /* ViewController.swift */,
 				C20CA59921DE51F200BDEBAC /* WaveView.swift */,
+				C20CA59B21E1359100BDEBAC /* WQWaveView.swift */,
 				C20CA58B21DE51D700BDEBAC /* Main.storyboard */,
 				C20CA58E21DE51DA00BDEBAC /* Assets.xcassets */,
 				C20CA59021DE51DA00BDEBAC /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C20CA58A21DE51D700BDEBAC /* ViewController.swift in Sources */,
+				C20CA59C21E1359100BDEBAC /* WQWaveView.swift in Sources */,
 				C20CA59A21DE51F200BDEBAC /* WaveView.swift in Sources */,
 				C20CA58821DE51D700BDEBAC /* AppDelegate.swift in Sources */,
 			);

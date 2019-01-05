@@ -32,15 +32,85 @@ class WaveView: UIView {
     var variable: CGFloat = 0.2/CGFloat.pi// 可变参数 更加真实 模拟波纹
     var increase: Bool = false// 增减变化
     
-
+    /// 波浪的layer
+    var waveSinLayer: CAShapeLayer!
+    
+    var phrase: CGFloat = 0
+    
+    var waveView: UIView = {
+        let v = UIView()
+        v.backgroundColor = UIColor.blue
+        
+        return v
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.yellow
+        buildWaveShapeLayer()
+        setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI() {
+        waveView.frame = bounds
+        addSubview(waveView)
+        let displayLink = CADisplayLink(target: self, selector: #selector(updateUI))
+        displayLink.add(to: RunLoop.current, forMode: .common)
+    }
+    
+    /// 更新UI
+    @objc private func updateUI() {
+        //不断的去变化self.phase,达到初像不段变化的目的/
+        let scale = self.bounds.size.width / 200.0
+//        phase += 5.0*scale
+        phrase += 0.05
+        //然后把path添加给当前的layer/
+        waveSinLayer.path = updatePath().cgPath
+    }
+    
+    private func updatePath() -> UIBezierPath {
+        let path = UIBezierPath()
+        let width = bounds.width
+//        let height = bounds.width
+//        var lastX = 0
+        
+        for x in 0...Int(width) {
+            /// 这里可以控制 整个 郑玄图的左右偏移量
+            let offSetX = 0.05*CGFloat(x) + phrase
+            let y = 20*sin(offSetX) - 20
+            
+            /// 0 是开始划线的起点，  后面是h划线的描述点
+            if x == 0 {
+                path.move(to: CGPoint(x: CGFloat(x), y: y))
+            } else {
+                path.addLine(to: CGPoint(x: CGFloat(x), y: y))
+            }
+        }
+        
+//        path.addLine(to: CGPoint(x: 0, y: ))
+        
+        return path
+    }
+    
+    private func buildWaveShapeLayer() {
+        let waveLayer = CAShapeLayer()
+        let scale = bounds.size.width / 200
+        waveLayer.frame = CGRect(x: 0, y: bounds.size.height-10*scale, width: bounds.size.width, height: bounds.size.height)
+        waveLayer.backgroundColor = UIColor.clear.cgColor
+        waveSinLayer = waveLayer
+//        layer.addSublayer(waveSinLayer)
+        waveView.layer.mask = waveSinLayer
+    }
+    
+    private func createAnimation() {
+        let position = CGPoint(x: waveSinLayer.position.x, y: 20)//(1.5-self.progress)*self.bounds.size.height)
+        let fromPosition = waveSinLayer.position
+        waveSinLayer.position = position
+        
     }
     
     func startWave() {
@@ -48,6 +118,7 @@ class WaveView: UIView {
             firstWaveLayer = CAShapeLayer()
         }
     }
+    
     
     /// build 一层波纹
     func buildFirstWaveLayerPath() {
@@ -76,7 +147,7 @@ class WaveView: UIView {
         let path = UIBezierPath(roundedRect: bounds, cornerRadius: 40)
         UIColor.red.setStroke()
         
-        path.lineWidth = 20
+        path.lineWidth = 1
         path.stroke()
         let layerT = CAShapeLayer()
         layerT.path = path.cgPath
